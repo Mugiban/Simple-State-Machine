@@ -10,26 +10,27 @@ namespace MG
         [Range(1f, 30f)] public float rotationSpeed = 10f;
         
         public Transform Target;
+        
         private StateMachine<Unit> _stateMachine;
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(transform.position, detectionRange);
-        }
-
+        
         private void Start()
         {
             var patrolling = new PatrollingState();
             var chasing = new ChasingState();
-            _stateMachine = new StateMachine<Unit>(this, patrolling);
+            _stateMachine = new StateMachine<Unit>(this);
             
+            _stateMachine.SetInitialState(patrolling);
             _stateMachine.AddState(chasing);
         }
-
         private void Update()
         {
             _stateMachine.Update(Time.deltaTime);
+        }
+        
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, detectionRange);
         }
     }
 }

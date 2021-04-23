@@ -13,9 +13,13 @@ namespace MG
 
         private readonly Dictionary<Type, State<T>> _states = new Dictionary<Type, State<T>>();
         
-        public StateMachine(T context, State<T> initialState)
+        public StateMachine(T context)
         {
             _context = context;
+        }
+
+        public void SetInitialState(State<T> initialState)
+        {
             AddState(initialState);
             _currentState = initialState;
             _currentState.Enter();

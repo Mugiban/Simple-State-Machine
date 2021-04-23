@@ -34,7 +34,8 @@ namespace Tests
         {
             //Act
             
-            _stateMachine = new StateMachine<FakeContext>(_fakeContext, _fakeState);
+            _stateMachine = new StateMachine<FakeContext>(_fakeContext);
+            _stateMachine.SetInitialState(_fakeState);
             
 
             //Assert
@@ -49,7 +50,8 @@ namespace Tests
             _anotherFakeState = new AnotherFakeState();
             //Act
             
-            _stateMachine = new StateMachine<FakeContext>(_fakeContext, _fakeState);
+            _stateMachine = new StateMachine<FakeContext>(_fakeContext);
+            _stateMachine.SetInitialState(_fakeState);
             _stateMachine.AddState(_anotherFakeState);
 
             //check for false positive

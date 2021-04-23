@@ -9,11 +9,7 @@ namespace MG
         {
             _stateMachine = stateMachine;
             _context = context;
-            InitializeCallback();
         }
-        
-        public virtual void InitializeCallback() {}
-
         public virtual void  TryChangeState() { }
         
         public virtual void Enter() { }
